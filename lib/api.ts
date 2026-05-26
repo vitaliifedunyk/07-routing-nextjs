@@ -10,12 +10,13 @@ interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 }
-export async function fetchNotes(page: number, search: string) {
+export async function fetchNotes(page: number, search: string, tag?: string) {
   const res = await axios.get<FetchNotesResponse>('/notes', {
     params: {
       page,
       perPage: 12,
       search,
+      tag,
     },
     headers: {
       Authorization: `Bearer ${token}`,
